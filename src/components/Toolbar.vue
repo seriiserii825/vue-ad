@@ -42,9 +42,6 @@ export default {
   &__sandwich {
     position: static;
   }
-  &__menu {
-    margin-right: 6rem;
-  }
   &__site-title {
     margin-right: auto;
     margin-left: 4rem;

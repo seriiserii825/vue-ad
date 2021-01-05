@@ -1,7 +1,10 @@
 <template>
   <ul class="menu-horizontal">
-    <router-link tag="li" class="menu-horizontal__item" :to="link" v-for="{id, title, link} in menu" :key="id">
-      <a>{{ title }}</a>
+    <router-link tag="li" class="menu-horizontal__item" :to="link" v-for="{id, title, link, img} in menu" :key="id">
+      <a>
+        <img :src="require(`@/assets/images/${img}`)" alt="">
+        <span>{{ title }}</span>
+      </a>
     </router-link>
   </ul>
 </template>
@@ -31,7 +34,7 @@ export default {
   display: flex;
   align-items: center;
   &__item {
-    margin-right: 2rem;
+    margin-right: 4rem;
     &.router-link-exact-active {
       a {
         &:after {
@@ -41,7 +44,8 @@ export default {
     }
     a {
       position: relative;
-      display: block;
+      display: flex;
+      align-items: center;
       padding: 10px 0;
       color: white;
       &:hover::after {
@@ -75,6 +79,10 @@ export default {
           animation-duration: .2s;
           animation-fill-mode: forwards;
         }
+      }
+      img {
+        margin-right: 2rem;
+        height: 20px;
       }
     }
   }

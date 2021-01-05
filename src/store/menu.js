@@ -4,17 +4,20 @@ export default {
       {
         id: 1,
         title: 'Home',
-        link: '/'
+        link: '/',
+        img: 'home.svg'
       },
       {
         id: 2,
         title: 'About',
-        link: '/about'
+        link: '/about',
+        img: 'about.svg'
       },
       {
         id: 3,
         title: 'Contacts',
-        link: '/contacts'
+        link: '/contacts',
+        img: 'contacts.svg'
       }
     ]
   },
