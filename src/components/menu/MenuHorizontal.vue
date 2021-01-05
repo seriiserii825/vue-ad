@@ -1,6 +1,6 @@
 <template>
-  <ul class="main-menu">
-    <router-link tag="li" class="main-menu__item" :to="link" v-for="{id, title, link} in menu" :key="id">
+  <ul class="menu-horizontal">
+    <router-link tag="li" class="menu-horizontal__item" :to="link" v-for="{id, title, link} in menu" :key="id">
       <a>{{ title }}</a>
     </router-link>
   </ul>
@@ -33,22 +33,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/assets/scss/variables.scss";
+@import "../../assets/scss/variables";
 @keyframes scaleBtn {
   0% {
-    transform: translate(-50%, -50%) scale(1);
     opacity: 0;
   }
   80% {
-    transform: translate(-50%, -50%) scale(2);
     opacity: 1;
   }
   100% {
-    transform: translate(-50%, -50%) scale(1);
     opacity: 0;
   }
 }
-.main-menu {
+.menu-horizontal {
   display: flex;
   align-items: center;
   &__item {
@@ -85,15 +82,14 @@ export default {
         left: 50%;
         width: 100%;
         height: 100%;
-        background-color: rgba($accent, .4);
-        border-radius: 50%;
-        transform: translate(-50%, -50%) scale(1);
+        background-color: rgba($accent, .3);
+        transform: translate(-50%, -50%);
         opacity: 0;
       }
       &:active {
         &::before {
           animation-name: scaleBtn;
-          animation-duration: 1s;
+          animation-duration: .2s;
           animation-fill-mode: forwards;
         }
       }

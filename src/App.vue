@@ -2,21 +2,27 @@
   <div id="app">
     <app-toolbar></app-toolbar>
     <router-view/>
+    <Sidebar></Sidebar>
   </div>
 </template>
 
 <script>
 import Toolbar from '@/components/Toolbar'
+import Sidebar from '@/components/Sidebar'
 
 export default {
   components: {
-    'app-toolbar': Toolbar
+    'app-toolbar': Toolbar,
+    Sidebar
   }
 }
 </script>
 
 <style lang="scss">
 @import "src/assets/scss/variables";
+#app {
+  position: relative;
+}
 html {
   font-size: 62.5%;
   @media screen and (max-width: 1200px) {
