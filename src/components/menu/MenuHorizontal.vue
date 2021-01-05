@@ -7,28 +7,10 @@
 </template>
 
 <script>
+import menuMixin from '@/mixins/menu-mixin'
+
 export default {
-  data () {
-    return {
-      menu: [
-        {
-          id: 1,
-          title: 'Home',
-          link: '/'
-        },
-        {
-          id: 2,
-          title: 'About',
-          link: '/about'
-        },
-        {
-          id: 3,
-          title: 'Contacts',
-          link: '/contacts'
-        }
-      ]
-    }
-  }
+  mixins: [menuMixin]
 }
 </script>
 
@@ -61,6 +43,7 @@ export default {
       position: relative;
       display: block;
       padding: 10px 0;
+      color: white;
       &:hover::after {
         transform: scaleX(1);
       }
@@ -72,7 +55,7 @@ export default {
         width: 100%;
         height: 2px;
         transform: scaleX(0);
-        background-color: $accent;
+        background-color: white;
         transition: all .8s;
       }
       &::before {
@@ -82,7 +65,7 @@ export default {
         left: 50%;
         width: 100%;
         height: 100%;
-        background-color: rgba($accent, .3);
+        background-color: rgba(white, .3);
         transform: translate(-50%, -50%);
         opacity: 0;
       }

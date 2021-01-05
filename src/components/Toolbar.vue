@@ -1,6 +1,9 @@
 <template>
   <div class="toolbar">
-    <app-sandwich class="toolbar__sandwich"></app-sandwich>
+    <app-sandwich
+        @click.native="showSidebar"
+        class="toolbar__sandwich"
+    ></app-sandwich>
     <SiteTitle class="toolbar__site-title" title="Ad project"></SiteTitle>
     <Menu class="toolbar__menu"></Menu>
   </div>
@@ -16,6 +19,11 @@ export default {
     'app-sandwich': Sandwich,
     SiteTitle,
     Menu
+  },
+  methods: {
+    showSidebar () {
+      this.$store.commit('setSidebarState', true)
+    }
   }
 }
 </script>
@@ -28,7 +36,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
-  background-color: #f1f1f1;
+  background-color: $accent;
   box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
   z-index: 10;
   &__sandwich {

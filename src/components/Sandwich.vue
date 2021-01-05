@@ -8,19 +8,13 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'sandwich'
-}
-</script>
-
 <style lang="scss">
 @import "src/assets/scss/variables";
 .sandwich-wrap {
   padding: 18px 10px;
   border-radius: 3px;
   z-index: 1001;
-  @media screen and (max-width: 992px) {
+  @media screen and (max-width: 576px) {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -51,7 +45,7 @@ export default {
   width: 100%;
   height: 2px;
   transition: all linear 0.1s;
-  background-color: $accent;
+  background-color: white;
 }
 .sandwich__line--top {
   top: 0;

@@ -2,19 +2,21 @@
   <div id="app">
     <app-toolbar></app-toolbar>
     <router-view/>
-    <Sidebar></Sidebar>
+    <Sidebar :class="{'active': sidebar}"></Sidebar>
   </div>
 </template>
 
 <script>
 import Toolbar from '@/components/Toolbar'
 import Sidebar from '@/components/Sidebar'
+import sidebarMixin from '@/mixins/sidebar-mixin'
 
 export default {
   components: {
     'app-toolbar': Toolbar,
     Sidebar
-  }
+  },
+  mixins: [sidebarMixin]
 }
 </script>
 

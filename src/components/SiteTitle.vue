@@ -14,5 +14,6 @@ export default {
 @import "src/assets/scss/variables";
 .site-title {
   font-size: 2.4rem;
+  color: white;
 }
 </style>
