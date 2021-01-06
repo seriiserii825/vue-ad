@@ -51,6 +51,7 @@ export default {
       align-items: center;
       padding: 10px 0;
       color: white;
+      text-shadow: 1px 1px 3px rgba(black, .3);
       &:hover::after {
         transform: scaleX(1);
       }
