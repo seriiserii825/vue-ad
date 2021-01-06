@@ -14,14 +14,10 @@
 <script>
 import sidebarMixins from '@/mixins/sidebar-mixin'
 import MenuVertical from '@/components/menu/MenuVertical'
+import HideSidebar from '@/mixins/mixin-hide-sidebar'
 
 export default {
-  mixins: [sidebarMixins],
-  methods: {
-    hideSidebar () {
-      this.$store.commit('setSidebarState', false)
-    }
-  },
+  mixins: [sidebarMixins, HideSidebar],
   components: {
     MenuVertical
   }

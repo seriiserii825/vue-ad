@@ -1,17 +1,24 @@
 <template>
   <ul class="menu-vertical">
-    <router-link tag="li" class="menu-vertical__item" :to="link" v-for="{id, title, link} in menu" :key="id">
-      <a>{{ title }}</a>
+    <router-link
+        tag="li"
+        class="menu-vertical__item"
+        :to="link" v-for="{id, title, link, img} in menu" :key="id"
+    >
+      <a @click="hideSidebar">
+        <img :src="require(`@/assets/images/${img}`)" alt="">
+        <span>{{ title }}</span> </a>
     </router-link>
   </ul>
 </template>
 
 <script>
 import menuMixin from '@/mixins/menu-mixin'
+import HideSidebar from '@/mixins/mixin-hide-sidebar'
 
 export default {
   name: 'MenuVertical',
-  mixins: [menuMixin]
+  mixins: [menuMixin, HideSidebar]
 }
 </script>
 
@@ -20,12 +27,21 @@ export default {
 .menu-vertical {
   li {
     margin-bottom: 2rem;
-    text-align: center;
+    &.router-link-exact-active {
+      a {
+        color: $contrast;
+      }
+    }
     a {
-      display: block;
+      display: flex;
+      align-items: center;
       font-size: 2.6rem;
       font-weight: bold;
       color: white;
+    }
+    img {
+      margin-right: 2rem;
+      height: 20px;
     }
   }
 }
