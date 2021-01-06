@@ -37,7 +37,8 @@ export default {
   align-items: center;
   padding: 5px 20px;
   background-color: $accent;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+  border-bottom: 1px solid darken($accent, 3%);
   z-index: 10;
   &__sandwich {
     position: static;

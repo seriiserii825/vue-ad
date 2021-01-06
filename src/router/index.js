@@ -6,6 +6,7 @@ import MyAds from '@/views/MyAds'
 import NewAd from '@/views/NewAd'
 import Orders from '@/views/Orders'
 import Registration from '@/views/Registration'
+import Ad from '@/views/Ad'
 
 Vue.use(VueRouter)
 
@@ -16,9 +17,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/ad/:id',
+    name: 'Ad',
+    component: Ad
   },
   {
     path: '/login',

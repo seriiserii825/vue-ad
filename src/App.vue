@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <app-toolbar></app-toolbar>
-    <router-view/>
+    <div class="main">
+      <div class="container">
+        <router-view/>
+      </div>
+    </div>
     <Sidebar :class="{'active': sidebar}"></Sidebar>
   </div>
 </template>
@@ -106,5 +110,8 @@ a {
       display: block !important;
     }
   }
+}
+.main {
+  padding: 6rem 0;
 }
 </style>
