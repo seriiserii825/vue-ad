@@ -61,6 +61,7 @@ export default {}
     left: 4.5rem;
     font-size: 1.4rem;
     transition: all .4s;
+    cursor: text;
     @media screen and (max-width: 1200px) {
       font-size: 1.8rem;
     }
