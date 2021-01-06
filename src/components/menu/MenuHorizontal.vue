@@ -33,6 +33,9 @@ export default {
 .menu-horizontal {
   display: flex;
   align-items: center;
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
   &__item {
     margin-right: 4rem;
     &.router-link-exact-active {
