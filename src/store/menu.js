@@ -18,6 +18,12 @@ export default {
         title: 'Contacts',
         link: '/contacts',
         img: 'contacts.svg'
+      },
+      {
+        id: 4,
+        title: 'Login',
+        link: '/login',
+        img: 'login.svg'
       }
     ]
   },

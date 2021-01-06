@@ -29,7 +29,7 @@ export default {
     margin-bottom: 2rem;
     &.router-link-exact-active {
       a {
-        color: $contrast;
+        color: lighten($contrast, 5%);
       }
     }
     a {
@@ -38,6 +38,12 @@ export default {
       font-size: 2.6rem;
       font-weight: bold;
       color: white;
+      transition: all .6s;
+      text-shadow: 2px 2px 4px rgba(black, .4);
+      &:hover {
+        transform: scaleX(1.02);
+        color: lighten($contrast, 5%);
+      }
     }
     img {
       margin-right: 2rem;
