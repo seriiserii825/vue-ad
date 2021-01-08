@@ -1,19 +1,26 @@
 <template>
   <div class="login">
     <div class="login__form">
-      <Form>
+      <Form @submit.native.prevent="onSubmitForm">
         <h2 class="form__title" slot="title">Form login</h2>
-        <div class="form__group" :class="{'active': inputEmailFocus}" slot="form-group-1">
+        <div class="form__group" :class="{'active': inputEmailFocus, 'invalid': emailInvalid}" slot="form-group-1">
           <label :for="email">Email</label>
           <font-awesome-icon :icon="['fas','user']"/>
-          <input @focusin="inputEmailFocus = true" @focusout="checkEmailFocus($event)" type="email" id="email">
-          <p class="field-error"></p>
+          <input
+              @input="$v.email.$touch()"
+              @focusin="onEmailInputFocus"
+              @focusout="checkEmailFocus($event)"
+              type="email" id="email"
+              v-model="email"
+          >
+          <p class="field-error" v-if="emailInvalid">This field is required</p>
+          <p class="field-error" v-if="!$v.email.email">Enter valid email</p>
         </div>
-        <div class="form__group" :class="{'active': inputPasswordFocus}" slot="form-group-2">
+        <div class="form__group" :class="{'active': inputPasswordFocus, 'invalid': passwordInvalid}" slot="form-group-2">
           <label :for="password">Password</label>
           <font-awesome-icon :icon="['fas','lock']"/>
-          <input @focusin="inputPasswordFocus = true" @focusout="checkPasswordFocus($event)" type="password" id="password">
-          <p class="field-error"></p>
+          <input @focusin="onPasswordInputFocus" @focusout="checkPasswordFocus($event)" v-model="password" type="password" id="password">
+          <p class="field-error" v-if="passwordInvalid">This field is required</p>
         </div>
         <Button type="submit" label="Login" slot="submit"></Button>
       </Form>
@@ -24,6 +31,7 @@
 <script>
 import Form from '@/components/form/Form'
 import Button from '@/components/ui/Button'
+import { required, email } from 'vuelidate/lib/validators'
 
 export default {
   data () {
@@ -31,7 +39,9 @@ export default {
       email: '',
       password: '',
       inputEmailFocus: false,
-      inputPasswordFocus: false
+      inputPasswordFocus: false,
+      emailInvalid: false,
+      passwordInvalid: false
     }
   },
   components: {
@@ -48,6 +58,33 @@ export default {
       if (e.target.value === '') {
         this.inputPasswordFocus = false
       }
+    },
+    onSubmitForm () {
+      if (!this.$v.email.required) {
+        this.emailInvalid = true
+        this.passwordInvalid = true
+      } else {
+        console.log(this.email)
+        console.log(this.password)
+      }
+    },
+    onEmailInputFocus () {
+      this.inputEmailFocus = true
+      this.emailInvalid = false
+    },
+    onPasswordInputFocus () {
+      this.inputPasswordFocus = true
+      this.passwordInvalid = false
+    }
+  },
+
+  validations: {
+    email: {
+      required,
+      email
+    },
+    password: {
+      required
     }
   }
 }

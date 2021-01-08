@@ -1,5 +1,5 @@
 <template>
-  <div class="form">
+  <form class="form">
     <slot name="title"></slot>
     <div class="form__body">
       <slot name="form-group-1"></slot>
@@ -8,7 +8,7 @@
         <slot name="submit"></slot>
       </footer>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -36,7 +36,7 @@ export default {}
     position: relative;
     display: flex;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     &.active {
       label {
         top: -1.5rem;
@@ -49,6 +49,14 @@ export default {}
       }
       svg {
         color: $accent;
+      }
+    }
+    &.invalid {
+      label {
+        color: red;
+      }
+      input {
+        border-bottom-color: red;
       }
     }
   }
@@ -84,6 +92,13 @@ export default {}
   svg {
     margin-right: 2rem;
     transition: all .4s;
+  }
+  .field-error {
+    position: absolute;
+    bottom: -1.4rem;
+    left: 4rem;
+    font-size: 1.2rem;
+    color: red;
   }
 }
 </style>
