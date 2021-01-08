@@ -37,29 +37,26 @@ export default {
           id: 1,
           title: 'First',
           text: 'some text 1',
-          imgSrc:
-              'https://img1.goodfon.ru/original/2880x900/7/ef/duesenberg-sj-272-2293.jpg',
+          imgSrc: 'https://img1.goodfon.ru/original/2880x900/7/ef/duesenberg-sj-272-2293.jpg',
           promo: false
         },
         {
           id: 2,
-          title: 'First',
+          title: 'Second',
           text: 'some text 2',
-          imgSrc:
-              'https://devil-cars.pl/storage/images/R3ZDLOPsvG4CFwnmTk351R6kzNaWavTIaPwScdxU.jpeg',
+          imgSrc: 'https://devil-cars.pl/storage/images/R3ZDLOPsvG4CFwnmTk351R6kzNaWavTIaPwScdxU.jpeg',
           promo: false
         },
         {
           id: 3,
-          title: 'First',
+          title: 'Third',
           text: 'some text 3',
-          imgSrc:
-              'https://www.carscoops.com/wp-content/uploads/2019/07/c1b689b8-corvette-c8-vs-c7-visual-comp-12.jpg',
+          imgSrc: 'https://www.carscoops.com/wp-content/uploads/2019/07/c1b689b8-corvette-c8-vs-c7-visual-comp-12.jpg',
           promo: false
         },
         {
           id: 4,
-          title: 'First',
+          title: 'Fourth',
           text: 'some text 4',
           imgSrc: 'https://www.footmanjames.co.uk/media/77468/trabant-hero.jpg',
           promo: false
