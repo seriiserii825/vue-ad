@@ -3,9 +3,19 @@
     <div class="login__form">
       <Form>
         <h2 class="form__title" slot="title">Form login</h2>
-        <FormGroup :errorMessage="{email: errors.email.email, required: errors.email.email}" @input="checkInput" v-model="email" slot="form-group-1" type="email" label="Email" icon="user"></FormGroup>
-        <FormGroup :errorMessage="{required: errors.password.required}" v-model="password" slot="form-group-2" type="password" label="Password" icon="lock"></FormGroup>
-        <Button @click.native="checkForm" type="submit" label="Login" slot="submit"></Button>
+        <div class="form__group" :class="{'active': inputEmailFocus}" slot="form-group-1">
+          <label :for="email">Email</label>
+          <font-awesome-icon :icon="['fas','user']"/>
+          <input @focusin="inputEmailFocus = true" @focusout="checkEmailFocus($event)" type="email" id="email">
+          <p class="field-error"></p>
+        </div>
+        <div class="form__group" :class="{'active': inputPasswordFocus}" slot="form-group-2">
+          <label :for="password">Password</label>
+          <font-awesome-icon :icon="['fas','lock']"/>
+          <input @focusin="inputPasswordFocus = true" @focusout="checkPasswordFocus($event)" type="password" id="password">
+          <p class="field-error"></p>
+        </div>
+        <Button type="submit" label="Login" slot="submit"></Button>
       </Form>
     </div>
   </div>
@@ -13,50 +23,30 @@
 
 <script>
 import Form from '@/components/form/Form'
-import FormGroup from '@/components/form/FormGroup'
 import Button from '@/components/ui/Button'
 
 export default {
   data () {
     return {
-      errors: {
-        email: {
-          required: '',
-          email: ''
-        },
-        password: {
-          required: ''
-        }
-      },
-      email: null,
-      password: null
+      email: '',
+      password: '',
+      inputEmailFocus: false,
+      inputPasswordFocus: false
     }
   },
   components: {
     Form,
-    FormGroup,
     Button
   },
   methods: {
-    checkInput: function () {
-      if (!this.validEmail(this.email)) {
-        this.errors.email.email = 'Email address is incorrect'
+    checkEmailFocus (e) {
+      if (e.target.value === '') {
+        this.inputEmailFocus = false
       }
     },
-    validEmail: function (email) {
-      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      return re.test(email)
-    },
-    checkForm () {
-      if (!this.email) {
-        this.errors.email.required = 'This field is required'
-      } else {
-        this.errors.email.required = ''
-      }
-      if (!this.password) {
-        this.errors.password.required = 'This field is required'
-      } else {
-        this.errors.password.required = ''
+    checkPasswordFocus (e) {
+      if (e.target.value === '') {
+        this.inputPasswordFocus = false
       }
     }
   }

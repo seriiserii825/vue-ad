@@ -62,17 +62,21 @@ export default {}
     font-size: 1.4rem;
     transition: all .4s;
     cursor: text;
+    z-index: 1;
     @media screen and (max-width: 1200px) {
       font-size: 1.8rem;
     }
   }
   input {
+    position: relative;
     width: 100%;
     height: 4rem;
     font-size: 1.6rem;
     border: none;
     border-bottom: 1px solid #888;
     transition: all .4s;
+    background-color: transparent;
+    z-index: 2;
     @media screen and (max-width: 1200px) {
       font-size: 1.8rem;
     }
