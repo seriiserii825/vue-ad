@@ -8,8 +8,8 @@
           <font-awesome-icon :icon="['fas','user']"/>
           <input
               @input="$v.email.$touch()"
-              @focusin="onEmailInputFocus"
-              @focusout="checkEmailFocus($event)"
+              @focusin="onInputFocus('inputEmailFocus', 'emailInvalid')"
+              @focusout="checkInputFocus($event, 'inputEmailFocus')"
               type="email" id="email"
               v-model="email"
           >
@@ -19,8 +19,16 @@
 
         <div class="form__group" :class="{'active': inputPasswordFocus, 'invalid': passwordInvalid}" slot="form-group-2">
           <label :for="password">Password</label>
-          <font-awesome-icon :icon="['fas','lock']"/>
-          <input @focusin="onPasswordInputFocus" @focusout="checkPasswordFocus($event)" v-model="password" type="password" id="password">
+          <font-awesome-icon
+              :icon="['fas','lock']"
+          />
+          <input
+              @focusin="onInputFocus('inputPasswordFocus', 'passwordInvalid')"
+              @focusout="checkInputFocus($event, 'inputEmailFocus')"
+              v-model="password"
+              type="password"
+              id="password"
+          >
           <p class="field-error" v-if="passwordInvalid">This field is required</p>
           <p class="field-error" v-if="!$v.password.minLength">Min length of password is {{ $v.password.$params.minLength.min }}</p>
         </div>
@@ -29,8 +37,8 @@
           <label :for="confirmPassword">Confirm password</label>
           <font-awesome-icon :icon="['fas','lock']"/>
           <input
-              @focusin="onConfirmPasswordInputFocus"
-              @focusout="checkConfirmPasswordFocus($event)"
+              @focusin="onInputFocus('inputConfirmPasswordFocus', 'confirmPasswordInvalid')"
+              @focusout="checkInputFocus($event, 'inputEmailFocus')"
               id="confirmPassword"
               type="password"
               v-model="confirmPassword"
@@ -70,19 +78,9 @@ export default {
     Button
   },
   methods: {
-    checkEmailFocus (e) {
+    checkInputFocus (e, input) {
       if (e.target.value === '') {
-        this.inputEmailFocus = false
-      }
-    },
-    checkPasswordFocus (e) {
-      if (e.target.value === '') {
-        this.inputPasswordFocus = false
-      }
-    },
-    checkConfirmPasswordFocus (e) {
-      if (e.target.value === '') {
-        this.inputConfirmPasswordFocus = false
+        this[input] = false
       }
     },
     onSubmitForm () {
@@ -100,17 +98,9 @@ export default {
         console.log(this.password)
       }
     },
-    onEmailInputFocus () {
-      this.inputEmailFocus = true
-      this.emailInvalid = false
-    },
-    onPasswordInputFocus () {
-      this.inputPasswordFocus = true
-      this.passwordInvalid = false
-    },
-    onConfirmPasswordInputFocus () {
-      this.inputConfirmPasswordFocus = true
-      this.confirmPasswordInvalid = false
+    onInputFocus (inputFocus, inputInvalid) {
+      this[inputFocus] = true
+      this[inputInvalid] = false
     }
   },
   validations: {
