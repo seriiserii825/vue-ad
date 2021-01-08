@@ -4,6 +4,7 @@
     <div class="form__body">
       <slot name="form-group-1"></slot>
       <slot name="form-group-2"></slot>
+      <slot name="form-group-3"></slot>
       <footer class="form__footer">
         <slot name="submit"></slot>
       </footer>
@@ -57,6 +58,9 @@ export default {}
       }
       input {
         border-bottom-color: red;
+      }
+      svg {
+        color: red;
       }
     }
   }
