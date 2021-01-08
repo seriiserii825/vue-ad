@@ -1,5 +1,7 @@
 <template>
-  <h1 class="site-title">{{ title }}</h1>
+  <h1 class="site-title">
+    <router-link to="/">{{ title }}</router-link>
+  </h1>
 </template>
 
 <script>

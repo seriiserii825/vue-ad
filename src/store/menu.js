@@ -2,12 +2,6 @@ export default {
   state: {
     menu: [
       {
-        id: 1,
-        title: 'Home',
-        link: '/',
-        img: 'home.svg'
-      },
-      {
         id: 2,
         title: 'My ads',
         link: '/my-ads',
