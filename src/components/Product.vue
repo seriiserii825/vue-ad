@@ -1,8 +1,6 @@
 <template>
   <div class="products__item">
-    <div class="products__img">
-      <img :src="imgSrc" alt=""/>
-    </div>
+    <ImageAbsolute v-image-height="'36rem'" :img-src="imgSrc"></ImageAbsolute>
     <div class="products__body">
       <h2 class="products__title">{{ title }}</h2>
       <p class="products__text">{{ text }}</p>
@@ -15,8 +13,13 @@
 </template>
 
 <script>
+import ImageAbsolute from '@/components/ui/ImageAbsolute'
+
 export default {
-  props: ['title', 'text', 'imgSrc']
+  props: ['title', 'text', 'imgSrc'],
+  components: {
+    ImageAbsolute
+  }
 }
 </script>
 

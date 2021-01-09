@@ -18,5 +18,8 @@ export default {
 .page-title {
   margin-bottom: 4rem;
   font-size: 4rem;
+  @media screen and (max-width: 576px) {
+    text-align: center;
+  }
 }
 </style>

@@ -32,40 +32,15 @@ import Product from '@/components/Product'
 export default {
   data () {
     return {
-      ads: [
-        {
-          id: 1,
-          title: 'First',
-          text: 'some text 1',
-          imgSrc: '1.jpg',
-          promo: false
-        },
-        {
-          id: 2,
-          title: 'Second',
-          text: 'some text 2',
-          imgSrc: '2.jpg',
-          promo: false
-        },
-        {
-          id: 3,
-          title: 'Third',
-          text: 'some text 3',
-          imgSrc: '3.jpg',
-          promo: false
-        },
-        {
-          id: 4,
-          title: 'Fourth',
-          text: 'some text 4',
-          imgSrc: '4.jpg',
-          promo: false
-        }
-      ],
       options: {
         rewind: true,
         gap: '1rem'
       }
+    }
+  },
+  computed: {
+    ads () {
+      return this.$store.getters.getAds
     }
   },
   components: {
@@ -118,25 +93,6 @@ export default {
     flex-basis: calc(50% - 4rem);
     border-bottom: 2px solid #ccc;
     box-shadow: 0 4px 8px rgba(black, .2);
-  }
-  &__img {
-    position: relative;
-    height: 40rem;
-    overflow: hidden;
-    &:hover {
-      img {
-        transform: scale(1.1);
-      }
-    }
-    img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: all .6s;
-    }
   }
   &__body {
     padding: 2rem;
