@@ -23,38 +23,14 @@ import CheckList from '@/components/ui/CheckList'
 import CheckListItem from '@/components/ui/CheckListItem'
 
 export default {
-  data () {
-    return {
-      orders: [
-        {
-          id: 1,
-          title: 'Order 1',
-          text: 'Order 1 text',
-          done: false
-        },
-        {
-          id: 2,
-          title: 'Order 2',
-          text: 'Order 2 text',
-          done: false
-        },
-        {
-          id: 3,
-          title: 'Order 3',
-          text: 'Order 3 text',
-          done: false
-        }
-      ]
+  computed: {
+    orders () {
+      return this.$store.getters.getOrders
     }
   },
   methods: {
     toggleChecked (id) {
-      console.log(this.orders)
-      this.orders.map(item => {
-        if (item.id === id) {
-          item.done = !item.done
-        }
-      })
+      this.$store.commit('setOrder', id)
     }
   },
   components: {
