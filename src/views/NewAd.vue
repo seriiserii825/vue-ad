@@ -33,6 +33,8 @@
           <div class="form-upload-image__img">
             <img width="200" :src="require(`@/assets/images/products/1.jpg`)" alt="">
           </div>
+          <h3 class="form-upload-image__title">Promo?</h3>
+          <SwitchBtn @click.prevent.native="togglePromo" class="form-upload-image__switch" :value="promo"></SwitchBtn>
         </div>
         <Button type="submit" label="Create new ad" slot="submit"></Button>
       </Form>
@@ -45,6 +47,7 @@ import PageTitle from '@/components/PageTitle'
 import { required } from 'vuelidate/lib/validators'
 import Button from '@/components/ui/Button'
 import Form from '@/components/form/Form'
+import SwitchBtn from '@/components/ui/SwitchBtn'
 
 export default {
   data () {
@@ -74,7 +77,8 @@ export default {
       if (this.$v.title.required && this.$v.description.required) {
         const newAd = {
           title: this.title,
-          description: this.description
+          description: this.description,
+          promo: this.promo
         }
         console.log(newAd)
       }
@@ -82,6 +86,9 @@ export default {
     onInputFocus (inputFocus, inputInvalid) {
       this[inputFocus] = true
       this[inputInvalid] = false
+    },
+    togglePromo () {
+      this.promo = !this.promo
     }
   },
   validations: {
@@ -95,7 +102,8 @@ export default {
   components: {
     PageTitle,
     Button,
-    Form
+    Form,
+    SwitchBtn
   }
 }
 </script>
@@ -111,8 +119,24 @@ export default {
 .form-upload-image {
   margin-bottom: 2rem;
   text-align: left;
+  &__title {
+    margin-bottom: 2rem;
+  }
+  img {
+    display: block;
+    margin-bottom: 3rem;
+  }
   button {
     margin-bottom: 2rem;
+  }
+  &__switch {
+    justify-content: flex-start;
+    .on.active {
+      background: $accent;
+    }
+    .off.active {
+      background: $contrast;
+    }
   }
 }
 </style>
