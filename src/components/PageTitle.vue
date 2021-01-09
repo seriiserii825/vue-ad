@@ -1,13 +1,14 @@
 <template>
-  <PageTitle title="Orders"></PageTitle>
+  <h2 class="page-title">{{ title }}</h2>
 </template>
 
 <script>
-import PageTitle from '@/components/PageTitle'
-
 export default {
-  components: {
-    PageTitle
+  props: {
+    title: {
+      required: true,
+      default: 'Page title'
+    }
   }
 }
 </script>
