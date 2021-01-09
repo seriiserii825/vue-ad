@@ -1,10 +1,24 @@
 <template>
-  <button class="btn" :type="type">{{ label }}</button>
+  <button class="btn" :type="type">
+    <router-link v-if="to" :to="to"><span>{{ label }}</span></router-link>
+    <span v-else>{{ label }}</span>
+  </button>
 </template>
 
 <script>
 export default {
-  props: ['type', 'label']
+  props: {
+    type: {
+      type: String
+    },
+    label: {
+      required: true,
+      type: String
+    },
+    to: {
+      type: String
+    }
+  }
 }
 </script>
 

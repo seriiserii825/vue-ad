@@ -7,6 +7,7 @@ import NewAd from '@/views/NewAd'
 import Orders from '@/views/Orders'
 import Registration from '@/views/Registration'
 import Ad from '@/views/Ad'
+import Order from '@/views/Order'
 
 Vue.use(VueRouter)
 
@@ -40,6 +41,11 @@ const routes = [
     path: '/orders',
     name: 'Orders',
     component: Orders
+  },
+  {
+    path: '/orders/:id',
+    name: 'Order',
+    component: Order
   },
   {
     path: '/registration',

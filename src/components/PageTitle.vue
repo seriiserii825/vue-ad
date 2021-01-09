@@ -15,5 +15,8 @@ export default {
 
 <style lang="scss">
 @import "src/assets/scss/variables";
-
+.page-title {
+  margin-bottom: 4rem;
+  font-size: 4rem;
+}
 </style>
