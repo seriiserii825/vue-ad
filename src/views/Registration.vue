@@ -3,7 +3,7 @@
     <div class="login__form">
       <Form @submit.native.prevent="onSubmitForm">
         <h2 class="form__title" slot="title">Registration form</h2>
-        <div class="form__group" :class="{'active': inputEmailFocus, 'invalid': emailInvalid}" slot="form-group-1">
+        <div class="form__group form__group--has-icon" :class="{'active': inputEmailFocus, 'invalid': emailInvalid}" slot="form-group-1">
           <label :for="email">Email</label>
           <font-awesome-icon :icon="['fas','user']"/>
           <input
@@ -17,7 +17,7 @@
           <p class="field-error" v-if="!$v.email.email">Enter valid email</p>
         </div>
 
-        <div class="form__group" :class="{'active': inputPasswordFocus, 'invalid': passwordInvalid}" slot="form-group-2">
+        <div class="form__group form__group--has-icon" :class="{'active': inputPasswordFocus, 'invalid': passwordInvalid}" slot="form-group-2">
           <label :for="password">Password</label>
           <font-awesome-icon
               :icon="['fas','lock']"
@@ -33,7 +33,7 @@
           <p class="field-error" v-if="!$v.password.minLength">Min length of password is {{ $v.password.$params.minLength.min }}</p>
         </div>
 
-        <div class="form__group" :class="{'active': inputConfirmPasswordFocus, 'invalid': confirmPasswordInvalid}" slot="form-group-3">
+        <div class="form__group form__group--has-icon" :class="{'active': inputConfirmPasswordFocus, 'invalid': confirmPasswordInvalid}" slot="form-group-3">
           <label :for="confirmPassword">Confirm password</label>
           <font-awesome-icon :icon="['fas','lock']"/>
           <input

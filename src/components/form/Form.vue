@@ -38,6 +38,11 @@ export default {}
     display: flex;
     align-items: center;
     margin-bottom: 3rem;
+    &.form__group--has-icon {
+      label {
+        left: 4.5rem;
+      }
+    }
     &.active {
       label {
         top: -1.5rem;
@@ -70,7 +75,7 @@ export default {}
   label {
     position: absolute;
     top: 30%;
-    left: 4.5rem;
+    left: 1.5rem;
     font-size: 1.4rem;
     transition: all .4s;
     cursor: text;
@@ -79,7 +84,8 @@ export default {}
       font-size: 1.8rem;
     }
   }
-  input {
+  input,
+  textarea {
     position: relative;
     width: 100%;
     height: 4rem;
@@ -88,10 +94,15 @@ export default {}
     border-bottom: 1px solid #888;
     transition: all .4s;
     background-color: transparent;
+    outline: none;
     z-index: 2;
     @media screen and (max-width: 1200px) {
       font-size: 1.8rem;
     }
+  }
+  textarea {
+    padding-top: 2rem;
+    height: 8rem;
   }
   svg {
     margin-right: 2rem;
