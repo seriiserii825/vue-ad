@@ -1,5 +1,6 @@
 <template>
   <div class="ad">
+    <!--Todo Add a media query for image in props-->
     <ImageAbsolute v-image-height="'60rem'" :img-src="require(`@/assets/images/products/1.jpg`)"></ImageAbsolute>
     <div class="cards-h__body">
       <div class="cards-h__content">
