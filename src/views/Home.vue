@@ -3,9 +3,9 @@
     <div class="container">
       <splide class="slider" :options="options">
         <splide-slide
-            class="slider__item"
-            v-for="{ id, title, imgSrc } in ads"
-            :key="id"
+          class="slider__item"
+          v-for="{ id, title, imgSrc } in promoAds"
+          :key="id"
         >
           <h2 class="slider__title">
             <router-link :to="'/ad/:' + id">{{ title }}</router-link>
@@ -15,11 +15,11 @@
       </splide>
       <div class="products">
         <Product
-            v-for="{ id, title, text, imgSrc } in ads"
-            :key="id"
-            :title="title"
-            :text="text"
-            :imgSrc="require(`@/assets/images/products/${imgSrc}`)"
+          v-for="{ id, title, text, imgSrc } in ads"
+          :key="id"
+          :title="title"
+          :text="text"
+          :imgSrc="require(`@/assets/images/products/${imgSrc}`)"
         ></Product>
       </div>
     </div>
@@ -41,6 +41,9 @@ export default {
   computed: {
     ads () {
       return this.$store.getters.getAds
+    },
+    promoAds () {
+      return this.$store.getters.getPromoAds
     }
   },
   components: {

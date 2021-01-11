@@ -2,7 +2,7 @@
   <div class="page-my-ads">
     <PageTitle title="My ads"></PageTitle>
     <Grid class="cards-h" v-grid-columns="3">
-      <GridItem class="cards-h__item" v-for="{id, title, text, imgSrc} in ads" :key="id">
+      <GridItem class="cards-h__item" v-for="{id, title, text, imgSrc} in myAds" :key="id">
         <ImageAbsolute v-image-height="'20rem'" v-image-media-height="'30rem'" :img-src="require(`@/assets/images/products/${imgSrc}`)"></ImageAbsolute>
         <div class="cards-h__body">
           <div class="cards-h__content">
@@ -25,8 +25,8 @@ import ImageAbsolute from '@/components/ui/ImageAbsolute'
 
 export default {
   computed: {
-    ads () {
-      return this.$store.getters.getAds
+    myAds () {
+      return this.$store.getters.getMyAds
     }
   },
   components: {

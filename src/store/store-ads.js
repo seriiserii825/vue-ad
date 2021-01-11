@@ -13,14 +13,14 @@ export default {
         title: 'Second',
         text: 'some text 2',
         imgSrc: '2.jpg',
-        promo: false
+        promo: true
       },
       {
         id: 3,
         title: 'Third',
         text: 'some text 3',
         imgSrc: '3.jpg',
-        promo: false
+        promo: true
       },
       {
         id: 4,
@@ -33,6 +33,12 @@ export default {
   },
   getters: {
     getAds (state) {
+      return state.ads
+    },
+    getPromoAds (state) {
+      return state.ads.filter(item => item.promo)
+    },
+    getMyAds (state) {
       return state.ads
     }
   },
