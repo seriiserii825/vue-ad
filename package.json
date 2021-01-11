@@ -13,6 +13,7 @@
     "@fortawesome/vue-fontawesome": "^2.0.2",
     "@splidejs/vue-splide": "^0.3.5",
     "core-js": "^3.6.5",
+    "firebase": "^8.2.2",
     "oh-vue-icons": "^0.1.7",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",

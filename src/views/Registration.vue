@@ -7,11 +7,11 @@
           <label :for="email">Email</label>
           <font-awesome-icon :icon="['fas','user']"/>
           <input
-              @input="$v.email.$touch()"
-              @focusin="onInputFocus('inputEmailFocus', 'emailInvalid')"
-              @focusout="checkInputFocus($event, 'inputEmailFocus')"
-              type="email" id="email"
-              v-model="email"
+            @input="$v.email.$touch()"
+            @focusin="onInputFocus('inputEmailFocus', 'emailInvalid')"
+            @focusout="checkInputFocus($event, 'inputEmailFocus')"
+            type="email" id="email"
+            v-model="email"
           >
           <p class="field-error" v-if="emailInvalid">This field is required</p>
           <p class="field-error" v-if="!$v.email.email">Enter valid email</p>
@@ -20,14 +20,14 @@
         <div class="form__group form__group--has-icon" :class="{'active': inputPasswordFocus, 'invalid': passwordInvalid}" slot="form-group-2">
           <label :for="password">Password</label>
           <font-awesome-icon
-              :icon="['fas','lock']"
+            :icon="['fas','lock']"
           />
           <input
-              @focusin="onInputFocus('inputPasswordFocus', 'passwordInvalid')"
-              @focusout="checkInputFocus($event, 'inputEmailFocus')"
-              v-model="password"
-              type="password"
-              id="password"
+            @focusin="onInputFocus('inputPasswordFocus', 'passwordInvalid')"
+            @focusout="checkInputFocus($event, 'inputEmailFocus')"
+            v-model="password"
+            type="password"
+            id="password"
           >
           <p class="field-error" v-if="passwordInvalid">This field is required</p>
           <p class="field-error" v-if="!$v.password.minLength">Min length of password is {{ $v.password.$params.minLength.min }}</p>
@@ -37,12 +37,12 @@
           <label :for="confirmPassword">Confirm password</label>
           <font-awesome-icon :icon="['fas','lock']"/>
           <input
-              @focusin="onInputFocus('inputConfirmPasswordFocus', 'confirmPasswordInvalid')"
-              @focusout="checkInputFocus($event, 'inputEmailFocus')"
-              id="confirmPassword"
-              type="password"
-              v-model="confirmPassword"
-              @input="$v.confirmPassword.$touch()"
+            @focusin="onInputFocus('inputConfirmPasswordFocus', 'confirmPasswordInvalid')"
+            @focusout="checkInputFocus($event, 'inputEmailFocus')"
+            id="confirmPassword"
+            type="password"
+            v-model="confirmPassword"
+            @input="$v.confirmPassword.$touch()"
           >
           <p class="field-error" v-if="confirmPasswordInvalid">This field is required</p>
           <p class="field-error" v-if="!$v.confirmPassword.minLength">Min length of password is {{ $v.confirmPassword.$params.minLength.min }}</p>
@@ -57,7 +57,7 @@
 <script>
 import Form from '@/components/form/Form'
 import Button from '@/components/ui/Button'
-import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
+import {required, email, minLength, sameAs} from 'vuelidate/lib/validators'
 
 export default {
   data () {
@@ -77,6 +77,11 @@ export default {
     Form,
     Button
   },
+  computed: {
+    loading () {
+      return this.$store.getters.loading
+    }
+  },
   methods: {
     checkInputFocus (e, input) {
       if (e.target.value === '') {
@@ -93,9 +98,12 @@ export default {
       if (!this.$v.confirmPassword.required) {
         this.confirmPasswordInvalid = true
       }
+      const user = {
+        email: this.email,
+        password: this.password
+      }
       if (this.$v.email.required && this.$v.password.required && this.$v.confirmPassword.required) {
-        console.log(this.email)
-        console.log(this.password)
+        this.$store.dispatch('registerUser', user)
       }
     },
     onInputFocus (inputFocus, inputInvalid) {

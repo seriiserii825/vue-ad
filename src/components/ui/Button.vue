@@ -1,7 +1,8 @@
 <template>
-  <button class="btn" :type="type">
+  <button class="btn" :class="{'btn--loading': loading}" :type="type">
     <router-link v-if="to" :to="to"><span>{{ label }}</span></router-link>
     <span v-else>{{ label }}</span>
+    <img v-if="loading" :src="require(`@/assets/images/static/loading.svg`)" alt="">
   </button>
 </template>
 
@@ -18,12 +19,25 @@ export default {
     to: {
       type: String
     }
+  },
+  computed: {
+    loading () {
+      return this.$store.getters.loading
+    }
   }
 }
 </script>
 
 <style lang="scss">
 @import "src/assets/scss/variables";
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
 .btn {
   position: relative;
   padding: 1rem 2.5rem;
@@ -32,8 +46,26 @@ export default {
   background-color: $accent;
   border: none;
   cursor: pointer;
-  transition: all .6s;
+  transition: all .3s;
   overflow: hidden;
+  &.btn--loading {
+    color: transparent;
+    background-color: deeppink;
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: block;
+      width: 20px;
+      animation-name: rotate;
+      animation-duration: .6s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      z-index: 10;
+    }
+  }
   &:hover {
     background-color: darken($accent, 5%);
     &::before {
