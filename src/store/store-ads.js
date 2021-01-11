@@ -54,6 +54,15 @@ export default {
           item.done = true
         }
       })
+    },
+    createAd (state, payload) {
+      state.ads.push(payload)
+    }
+  },
+  actions: {
+    createAd ({commit}, payload) {
+      payload.id = Math.floor(Math.random() * 1000)
+      commit('createAd', payload)
     }
   }
 }

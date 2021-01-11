@@ -7,23 +7,23 @@
         <div class="form__group" :class="{'active': titleFocus, 'invalid': titleInvalid}" slot="form-group-1">
           <label :for="title">Title</label>
           <input
-              @input="$v.title.$touch()"
-              @focusin="onInputFocus('titleFocus', 'titleInvalid')"
-              @focusout="checkInputFocus($event, 'titleFocus')"
-              type="text"
-              id="title"
-              v-model="title"
+            @input="$v.title.$touch()"
+            @focusin="onInputFocus('titleFocus', 'titleInvalid')"
+            @focusout="checkInputFocus($event, 'titleFocus')"
+            type="text"
+            id="title"
+            v-model="title"
           >
           <p class="field-error" v-if="titleInvalid">This field is required</p>
         </div>
         <div class="form__group" :class="{'active': descriptionFocus, 'invalid': descriptionInvalid}" slot="form-group-1">
           <label :for="description">Description</label>
           <textarea
-              @input="$v.description.$touch()"
-              @focusin="onInputFocus('descriptionFocus', 'descriptionInvalid')"
-              @focusout="checkInputFocus($event, 'descriptionFocus')"
-              id="description"
-              v-model="description"
+            @input="$v.description.$touch()"
+            @focusin="onInputFocus('descriptionFocus', 'descriptionInvalid')"
+            @focusout="checkInputFocus($event, 'descriptionFocus')"
+            id="description"
+            v-model="description"
           >
           </textarea>
           <p class="field-error" v-if="titleInvalid">This field is required</p>
@@ -44,7 +44,7 @@
 
 <script>
 import PageTitle from '@/components/PageTitle'
-import { required } from 'vuelidate/lib/validators'
+import {required} from 'vuelidate/lib/validators'
 import Button from '@/components/ui/Button'
 import Form from '@/components/form/Form'
 import SwitchBtn from '@/components/ui/SwitchBtn'
@@ -78,9 +78,10 @@ export default {
         const newAd = {
           title: this.title,
           description: this.description,
-          promo: this.promo
+          promo: this.promo,
+          imgSrc: '2.jpg'
         }
-        console.log(newAd)
+        this.$store.dispatch('createAd', newAd)
       }
     },
     onInputFocus (inputFocus, inputInvalid) {
