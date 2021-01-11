@@ -22,7 +22,6 @@ Vue.directive('grid-columns', GridDirective)
 Vue.directive('image-height', ImageHeightDirective)
 Vue.directive('image-media-height', ImageMediaHeightDirective)
 Vue.config.productionTip = false
-
 new Vue({
   router,
   store,
