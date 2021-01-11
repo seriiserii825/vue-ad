@@ -1,11 +1,11 @@
 <template>
   <div class="ad">
     <!--Todo Add a media query for image in props-->
-    <ImageAbsolute v-image-height="'60rem'" :img-src="require(`@/assets/images/products/1.jpg`)"></ImageAbsolute>
+    <ImageAbsolute v-image-height="'60rem'" :img-src="require(`@/assets/images/products/${ad.imgSrc}`)"></ImageAbsolute>
     <div class="cards-h__body">
       <div class="cards-h__content">
-        <h2 class="cards-h__title">Title</h2>
-        <p class="cards-h__text">Text</p>
+        <h2 class="cards-h__title">{{ ad.title }}</h2>
+        <p class="cards-h__text">{{ ad.text }}</p>
       </div>
     </div>
     <div class="cards-h__footer">
@@ -20,6 +20,12 @@ import ImageAbsolute from '@/components/ui/ImageAbsolute'
 import Button from '@/components/ui/Button'
 
 export default {
+  props: ['id'],
+  computed: {
+    ad () {
+      return this.$store.getters.getAdById(this.id)
+    }
+  },
   components: {
     ImageAbsolute,
     Button

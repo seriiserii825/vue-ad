@@ -8,7 +8,7 @@
           :key="id"
         >
           <h2 class="slider__title">
-            <router-link :to="'/ad/:' + id">{{ title }}</router-link>
+            <router-link :to="'/ad/' + id">{{ title }}</router-link>
           </h2>
           <img :src="require(`@/assets/images/products/${imgSrc}`)" :alt="title"/>
         </splide-slide>

@@ -10,7 +10,6 @@ import Ad from '@/views/Ad'
 import Order from '@/views/Order'
 
 Vue.use(VueRouter)
-
 const routes = [
   {
     path: '/',
@@ -19,7 +18,8 @@ const routes = [
   },
   {
     path: '/ad/:id',
-    name: 'Ad',
+    name: 'ad',
+    props: true,
     component: Ad
   },
   {
@@ -53,11 +53,9 @@ const routes = [
     component: Registration
   }
 ]
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
 })
-
 export default router
