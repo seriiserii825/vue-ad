@@ -1,6 +1,6 @@
 <template>
   <div class="ad">
-    <ImageAbsolute v-image-height="'60rem'" :img-src="adImg"></ImageAbsolute>
+    <ImageAbsolute v-image-height="'60rem'" :img-src="require(`@/assets/images/products/${ad.imgSrc}`)"></ImageAbsolute>
     <div class="cards-h__body">
       <div class="cards-h__content">
         <h2 class="cards-h__title">{{ ad.title }}</h2>
@@ -20,27 +20,9 @@ import Button from '@/components/ui/Button'
 
 export default {
   props: ['id'],
-  data () {
-    return {
-      adSingle: null
-    }
-  },
   computed: {
     ad () {
       return this.$store.getters.getAdById(this.id)
-    }
-  },
-  mounted () {
-    this.adSingle = this.ad
-    console.log(this.adSingle)
-  },
-  methods: {
-    adImg () {
-      if (this.adSingle.imgSrc) {
-        return require(`@/assets/images/products/${this.adSingle.imgSrc}`)
-      } else {
-        return '@/assets/images/products/2.jpg'
-      }
     }
   },
   components: {
