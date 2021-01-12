@@ -8,6 +8,8 @@ import Orders from '@/views/Orders'
 import Registration from '@/views/Registration'
 import Ad from '@/views/Ad'
 import Order from '@/views/Order'
+import Logout from '@/views/Logout'
+import AuthGuard from '@/router/auth-guard'
 
 Vue.use(VueRouter)
 const routes = [
@@ -20,7 +22,8 @@ const routes = [
     path: '/ad/:id',
     name: 'ad',
     props: true,
-    component: Ad
+    component: Ad,
+    beforeEnter: AuthGuard
   },
   {
     path: '/login',
@@ -28,24 +31,33 @@ const routes = [
     component: Login
   },
   {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout
+  },
+  {
     path: '/my-ads',
     name: 'My ads',
-    component: MyAds
+    component: MyAds,
+    beforeEnter: AuthGuard
   },
   {
     path: '/new-ad',
     name: 'New ad',
-    component: NewAd
+    component: NewAd,
+    beforeEnter: AuthGuard
   },
   {
     path: '/orders',
     name: 'Orders',
-    component: Orders
+    component: Orders,
+    beforeEnter: AuthGuard
   },
   {
     path: '/orders/:id',
     name: 'Order',
-    component: Order
+    component: Order,
+    beforeEnter: AuthGuard
   },
   {
     path: '/registration',

@@ -3,8 +3,7 @@
     <router-link tag="li" class="menu-horizontal__item" :to="link" v-for="{id, title, link, img} in menu" :key="id">
       <a>
         <img :src="require(`@/assets/images/${img}`)" alt="">
-        <span>{{ title }}</span>
-      </a>
+        <span>{{ title }}</span> </a>
     </router-link>
   </ul>
 </template>

@@ -1,6 +1,6 @@
 export default {
   state: {
-    menu: [
+    menuLogIn: [
       {
         id: 2,
         title: 'My ads',
@@ -21,12 +21,20 @@ export default {
       },
       {
         id: 5,
+        title: 'Logout',
+        link: '/logout',
+        img: 'logout.svg'
+      }
+    ],
+    menuLogOut: [
+      {
+        id: 6,
         title: 'Registration',
         link: '/registration',
         img: 'registration.svg'
       },
       {
-        id: 6,
+        id: 7,
         title: 'Login',
         link: '/login',
         img: 'login.svg'
@@ -34,8 +42,11 @@ export default {
     ]
   },
   getters: {
-    getMenuState (state) {
-      return state.menu
+    getMenuLogIn (state) {
+      return state.menuLogIn
+    },
+    getMenuLogOut (state) {
+      return state.menuLogOut
     }
   }
 }

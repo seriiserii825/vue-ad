@@ -1,7 +1,10 @@
 export default {
   computed: {
     menu () {
-      return this.$store.getters.getMenuState
+      if (this.$store.getters.user) {
+        return this.$store.getters.getMenuLogIn
+      }
+      return this.$store.getters.getMenuLogOut
     }
   }
 }
