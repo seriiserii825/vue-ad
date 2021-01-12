@@ -48,7 +48,7 @@
           <p class="field-error" v-if="!$v.confirmPassword.minLength">Min length of password is {{ $v.confirmPassword.$params.minLength.min }}</p>
           <p class="field-error" v-else-if="!$v.confirmPassword.sameAs">Passwords input must match</p>
         </div>
-        <Button type="submit" label="Login" slot="submit"></Button>
+        <Button type="submit" label="Login" slot="submit" :class="{'btn--loading': loading}"></Button>
       </Form>
     </div>
   </div>
@@ -104,6 +104,10 @@ export default {
       }
       if (this.$v.email.required && this.$v.password.required && this.$v.confirmPassword.required) {
         this.$store.dispatch('registerUser', user)
+          .then(() => {
+            this.$router.push('/')
+          })
+          .catch(err => console.log(err))
       }
     },
     onInputFocus (inputFocus, inputInvalid) {

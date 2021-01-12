@@ -21,18 +21,18 @@ export default {
     }
   },
   actions: {
-    registerUser ({commit}, {email, password}) {
+    async registerUser ({commit}, {email, password}) {
       commit('clearError')
       commit('setLoading', true)
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(user => {
-          commit('setUser', new User(user.uid))
-          commit('setLoading', false)
-        })
-        .catch(error => {
-          commit('setLoading', false)
-          commit('setError', error.msg)
-        })
+      try {
+        const user = await firebase.auth().createUserWithEmailAndPassword(email, password)
+        commit('setUser', new User(user.uid))
+        commit('setLoading', false)
+      } catch (error) {
+        commit('setLoading', false)
+        commit('setError', error.msg)
+        throw error
+      }
     }
   }
 }

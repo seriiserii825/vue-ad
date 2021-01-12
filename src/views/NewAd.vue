@@ -92,6 +92,11 @@ export default {
       this.promo = !this.promo
     }
   },
+  computed: {
+    loading () {
+      return this.$store.getters.loading
+    }
+  },
   validations: {
     title: {
       required
