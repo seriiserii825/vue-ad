@@ -7,11 +7,11 @@
           <label :for="email">Email</label>
           <font-awesome-icon :icon="['fas','user']"/>
           <input
-              @input="$v.email.$touch()"
-              @focusin="onInputFocus('inputEmailFocus', 'emailInvalid')"
-              @focusout="checkInputFocus($event, 'inputEmailFocus')"
-              type="email" id="email"
-              v-model="email"
+            @input="$v.email.$touch()"
+            @focusin="onInputFocus('inputEmailFocus', 'emailInvalid')"
+            @focusout="checkInputFocus($event, 'inputEmailFocus')"
+            type="email" id="email"
+            v-model="email"
           >
           <p class="field-error" v-if="emailInvalid">This field is required</p>
           <p class="field-error" v-if="!$v.email.email">Enter valid email</p>
@@ -20,18 +20,18 @@
         <div class="form__group form__group--has-icon" :class="{'active': inputPasswordFocus, 'invalid': passwordInvalid}" slot="form-group-2">
           <label :for="password">Password</label>
           <font-awesome-icon
-              :icon="['fas','lock']"
+            :icon="['fas','lock']"
           />
           <input
-              @focusin="onInputFocus('inputPasswordFocus', 'passwordInvalid')"
-              @focusout="checkInputFocus($event, 'inputEmailFocus')"
-              v-model="password"
-              type="password"
-              id="password"
+            @focusin="onInputFocus('inputPasswordFocus', 'passwordInvalid')"
+            @focusout="checkInputFocus($event, 'inputEmailFocus')"
+            v-model="password"
+            type="password"
+            id="password"
           >
           <p class="field-error" v-if="passwordInvalid">This field is required</p>
         </div>
-        <Button type="submit" label="Login" slot="submit"></Button>
+        <Button :class="{'btn--loading': loading}" type="submit" label="Login" slot="submit"></Button>
       </Form>
     </div>
   </div>
@@ -40,7 +40,8 @@
 <script>
 import Form from '@/components/form/Form'
 import Button from '@/components/ui/Button'
-import { required, email } from 'vuelidate/lib/validators'
+import {required, email} from 'vuelidate/lib/validators'
+import loading from '@/mixins/mixin-loading'
 
 export default {
   data () {
@@ -68,8 +69,12 @@ export default {
         this.emailInvalid = true
         this.passwordInvalid = true
       } else {
-        console.log(this.email)
-        console.log(this.password)
+        const user = {email: this.email, password: this.password}
+        this.$store.dispatch('loginUser', user)
+          .then(() => {
+            this.$router.push('/')
+          })
+          .catch(err => console.log(err))
       }
     },
     onInputFocus (inputFocus, inputInvalid) {
@@ -77,6 +82,7 @@ export default {
       this[inputInvalid] = false
     }
   },
+  mixins: [loading],
   validations: {
     email: {
       required,

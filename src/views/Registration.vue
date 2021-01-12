@@ -58,6 +58,7 @@
 import Form from '@/components/form/Form'
 import Button from '@/components/ui/Button'
 import {required, email, minLength, sameAs} from 'vuelidate/lib/validators'
+import loading from '@/mixins/mixin-loading'
 
 export default {
   data () {
@@ -73,14 +74,10 @@ export default {
       confirmPasswordInvalid: false
     }
   },
+  mixins: [loading],
   components: {
     Form,
     Button
-  },
-  computed: {
-    loading () {
-      return this.$store.getters.loading
-    }
   },
   methods: {
     checkInputFocus (e, input) {
