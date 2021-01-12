@@ -5,6 +5,7 @@
       <div class="container">
         <router-view/>
       </div>
+      <ErrorBlock v-if="error">{{ error }}</ErrorBlock>
     </div>
     <Sidebar :class="{'active': sidebar}"></Sidebar>
   </div>
@@ -14,11 +15,27 @@
 import Toolbar from '@/components/Toolbar'
 import Sidebar from '@/components/Sidebar'
 import sidebarMixin from '@/mixins/sidebar-mixin'
+import ErrorBlock from '@/components/ui/ErrorBlock'
 
 export default {
   components: {
     'app-toolbar': Toolbar,
-    Sidebar
+    Sidebar,
+    ErrorBlock
+  },
+  computed: {
+    error () {
+      return this.$store.getters.error
+    }
+  },
+  watch: {
+    error () {
+      if (this.error) {
+        setTimeout(() => {
+          this.$store.commit('clearError')
+        }, 5000)
+      }
+    }
   },
   mixins: [sidebarMixin]
 }

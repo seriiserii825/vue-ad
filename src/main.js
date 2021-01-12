@@ -11,6 +11,8 @@ import '@splidejs/splide/dist/css/themes/splide-default.min.css'
 import GridDirective from '@/directives/grid'
 import ImageHeightDirective from '@/directives/image-height'
 import ImageMediaHeightDirective from '@/directives/image-media-query-height'
+import color from '@/directives/color'
+import background from '@/directives/background'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
@@ -23,6 +25,8 @@ Vue.use(VueSplide)
 Vue.directive('grid-columns', GridDirective)
 Vue.directive('image-height', ImageHeightDirective)
 Vue.directive('image-media-height', ImageMediaHeightDirective)
+Vue.directive('color', color)
+Vue.directive('background-color', background)
 Vue.config.productionTip = false
 new Vue({
   router,
