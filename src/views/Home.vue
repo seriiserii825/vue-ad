@@ -16,6 +16,7 @@
       <div class="products">
         <Product
           v-for="{ id, title, text, imgSrc } in ads"
+          :id="id"
           :key="id"
           :title="title"
           :text="text"

@@ -6,7 +6,7 @@
       <p class="products__text">{{ text }}</p>
     </div>
     <div class="products__footer">
-      <router-link to="" class="btn btn--pink btn--hover">Open</router-link>
+      <router-link :to="'/ad/'+ id" class="btn btn--pink btn--hover">Open</router-link>
       <router-link to="" class="btn btn--blue btn--hover">Buy</router-link>
     </div>
   </div>
@@ -16,7 +16,7 @@
 import ImageAbsolute from '@/components/ui/ImageAbsolute'
 
 export default {
-  props: ['title', 'text', 'imgSrc'],
+  props: ['id', 'title', 'text', 'imgSrc'],
   components: {
     ImageAbsolute
   }
