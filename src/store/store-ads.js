@@ -3,11 +3,11 @@ import 'firebase/database'
 
 class Ad {
   // ownerId - id пользователся, который создал объявление
-  constructor (title, description, ownerId, imageSrc = '', promo = false, id = null) {
+  constructor (title, description, ownerId, imgSrc, promo = false, id = null) {
     this.title = title
     this.description = description
     this.ownerId = ownerId
-    this.imageSrc = imageSrc
+    this.imgSrc = imgSrc
     this.promo = promo
     this.id = id
   }
@@ -81,14 +81,18 @@ export default {
       // будем работать с асинхронными событиями
       try {
         // получаем id пользователя
-        const userId = getters.user
+        const userId = getters.user.id
         // id объявления в экземпляр класса передавать не нужно, так как мы его получим из firebase.
-        const ad = new Ad(payload.title, payload.description, userId, payload.imageSrc, payload.promo)
+        const newAd = new Ad(payload.title, payload.description, userId, payload.imgSrc, payload.promo)
         // ref - передаем название базы данных
         // push - передаем данные, которые будут записанны в базе данных
         // данный метод будет идти асинхронно, поэтому нужно использовать await
-        const fbValue = firebase.database().ref('ads').push(ad)
-        console.log(fbValue)
+        const fbValue = await firebase.database().ref('ads').push(newAd)
+        commit('setLoading', false)
+        commit('createAd', {
+          ...newAd,
+          id: fbValue.key
+        })
       } catch (error) {
         commit('setError', error)
         commit('setLoading', false)

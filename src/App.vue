@@ -1,10 +1,6 @@
 <template>
   <div id="app">
     <app-toolbar></app-toolbar>
-    <h2>User</h2>
-    <pre>
-        {{ user }}
-      </pre>
     <div class="main">
       <div class="container">
         <router-view/>
@@ -30,9 +26,6 @@ export default {
   computed: {
     error () {
       return this.$store.getters.error
-    },
-    user () {
-      return this.$store.getters.user
     }
   },
   watch: {

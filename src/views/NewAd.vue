@@ -82,6 +82,12 @@ export default {
           imgSrc: '2.jpg'
         }
         this.$store.dispatch('createAd', newAd)
+          .then(() => {
+            this.$router.push('/my-ads')
+          })
+          .catch((error) => {
+            console.log(error)
+          })
       }
     },
     onInputFocus (inputFocus, inputInvalid) {
