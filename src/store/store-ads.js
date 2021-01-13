@@ -1,5 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/database'
+import 'firebase/storage'
 
 class Ad {
   // ownerId - id пользователся, который создал объявление
@@ -57,11 +58,15 @@ export default {
         // получаем id пользователя
         const userId = getters.user.id
         // id объявления в экземпляр класса передавать не нужно, так как мы его получим из firebase.
-        const newAd = new Ad(payload.title, payload.description, userId, payload.imgSrc, payload.promo)
+        const newAd = new Ad(payload.title, payload.description, userId, '', payload.promo)
         // ref - передаем название базы данных
         // push - передаем данные, которые будут записанны в базе данных
         // данный метод будет идти асинхронно, поэтому нужно использовать await
         const fbValue = await firebase.database().ref('ads').push(newAd)
+        const image = payload.image
+        const imageExt = image.name.slice(image.name.lastIndexOf('.'))
+        const fileData = await firebase.storage().ref(`ads/${fbValue.key}.${imageExt}`).put(image)
+        console.log(fileData)
         commit('setLoading', false)
         commit('createAd', {
           ...newAd,

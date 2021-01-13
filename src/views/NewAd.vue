@@ -29,9 +29,10 @@
           <p class="field-error" v-if="titleInvalid">This field is required</p>
         </div>
         <div class="form-upload-image" slot="form-group-3">
-          <Button label="Upload"></Button>
+          <input type="file" style="display: none" accept="image/*" ref="fileUpload" @change="onFileChange">
+          <Button label="Upload" @click.native="triggerUpload" type="button"></Button>
           <div class="form-upload-image__img">
-            <img width="200" :src="require(`@/assets/images/products/1.jpg`)" alt="">
+            <img v-if="imgSrc" width="200" :src="imgSrc" alt="">
           </div>
           <h3 class="form-upload-image__title">Promo?</h3>
           <SwitchBtn @click.prevent.native="togglePromo" class="form-upload-image__switch" :value="promo"></SwitchBtn>
@@ -58,7 +59,9 @@ export default {
       titleFocus: false,
       titleInvalid: false,
       descriptionFocus: false,
-      descriptionInvalid: false
+      descriptionInvalid: false,
+      imgSrc: '',
+      image: null
     }
   },
   methods: {
@@ -74,16 +77,21 @@ export default {
       if (!this.$v.description.required) {
         this.descriptionInvalid = true
       }
-      if (this.$v.title.required && this.$v.description.required) {
+      if (!this.imgSrc) {
+        this.$store.commit('setError', 'Upload image for new ad')
+      }
+      if (this.$v.title.required && this.$v.description.required && this.imgSrc) {
         const newAd = {
           title: this.title,
           description: this.description,
           promo: this.promo,
-          imgSrc: '2.jpg'
+          // добавляем картинку
+          image: this.image
         }
         this.$store.dispatch('createAd', newAd)
           .then(() => {
             this.$router.push('/my-ads')
+            this.$store.commit('clearError')
           })
           .catch((error) => {
             console.log(error)
@@ -96,6 +104,18 @@ export default {
     },
     togglePromo () {
       this.promo = !this.promo
+    },
+    triggerUpload () {
+      this.$refs.fileUpload.click()
+    },
+    onFileChange (event) {
+      const file = event.target.files[0]
+      const reader = new FileReader()
+      reader.onload = e => {
+        this.imgSrc = reader.result
+      }
+      reader.readAsDataURL(file)
+      this.image = file
     }
   },
   computed: {
