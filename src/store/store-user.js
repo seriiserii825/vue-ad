@@ -21,7 +21,7 @@ export default {
     }
   },
   actions: {
-    async registerUser ({ commit }, {
+    async registerUser ({commit}, {
       email,
       password
     }) {
@@ -37,7 +37,7 @@ export default {
         throw error
       }
     },
-    async loginUser ({ commit }, {
+    async loginUser ({commit}, {
       email,
       password
     }) {
@@ -53,9 +53,12 @@ export default {
         throw error
       }
     },
-    userLogOut ({ commit }) {
+    userLogOut ({commit}) {
       firebase.auth().signOut()
       commit('setUser', null)
+    },
+    autoLoginUser ({commit}, payload) {
+      commit('setUser', new User(payload.id))
     }
   }
 }
