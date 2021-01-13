@@ -1,3 +1,17 @@
+import firebase from 'firebase/app'
+import 'firebase/database'
+
+class Ad {
+  // ownerId - id пользователся, который создал объявление
+  constructor (title, description, ownerId, imageSrc = '', promo = false, id = null) {
+    this.title = title
+    this.description = description
+    this.ownerId = ownerId
+    this.imageSrc = imageSrc
+    this.promo = promo
+    this.id = id
+  }
+}
 export default {
   state: {
     ads: [
@@ -60,9 +74,26 @@ export default {
     }
   },
   actions: {
-    createAd ({commit}, payload) {
-      payload.id = Math.floor(Math.random() * 1000)
-      commit('createAd', payload)
+    // async method вернет promise
+    async createAd ({commit, getters}, payload) {
+      commit('clearError')
+      commit('setLoading', true)
+      // будем работать с асинхронными событиями
+      try {
+        // получаем id пользователя
+        const userId = getters.user
+        // id объявления в экземпляр класса передавать не нужно, так как мы его получим из firebase.
+        const ad = new Ad(payload.title, payload.description, userId, payload.imageSrc, payload.promo)
+        // ref - передаем название базы данных
+        // push - передаем данные, которые будут записанны в базе данных
+        // данный метод будет идти асинхронно, поэтому нужно использовать await
+        const fbValue = firebase.database().ref('ads').push(ad)
+        console.log(fbValue)
+      } catch (error) {
+        commit('setError', error)
+        commit('setLoading', false)
+        throw error // выкинем ошибку, чтобы потом обработать в промисе
+      }
     }
   }
 }

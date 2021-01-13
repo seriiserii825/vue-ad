@@ -76,7 +76,6 @@ export default {
         this.$store.dispatch('loginUser', user)
           .then(() => {
             this.$router.push('/')
-            console.log(this.$store.getters.user)
           })
           .catch(err => console.log(err))
       }
