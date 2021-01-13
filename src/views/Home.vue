@@ -1,28 +1,31 @@
 <template>
   <div class="home">
     <div class="container" v-if="!loading">
-      <splide class="slider" :options="options">
-        <splide-slide
-          class="slider__item"
-          v-for="{ id, title, imgSrc } in promoAds"
-          :key="id"
-        >
-          <h2 class="slider__title">
-            <router-link :to="'/ad/' + id">{{ title }}</router-link>
-          </h2>
-          <img :src="imgSrc" :alt="title"/>
-        </splide-slide>
-      </splide>
-      <div class="products">
-        <Product
-          v-for="{ id, title, text, imgSrc } in ads"
-          :id="id"
-          :key="id"
-          :title="title"
-          :text="text"
-          :imgSrc="imgSrc"
-        ></Product>
+      <div class="home-content" v-if="ads">
+        <splide class="slider" :options="options">
+          <splide-slide
+            class="slider__item"
+            v-for="{ id, title, imgSrc } in promoAds"
+            :key="id"
+          >
+            <h2 class="slider__title">
+              <router-link :to="'/ad/' + id">{{ title }}</router-link>
+            </h2>
+            <img :src="imgSrc" :alt="title"/>
+          </splide-slide>
+        </splide>
+        <div class="products">
+          <Product
+            v-for="{ id, title, text, imgSrc } in ads"
+            :id="id"
+            :key="id"
+            :title="title"
+            :text="text"
+            :imgSrc="imgSrc"
+          ></Product>
+        </div>
       </div>
+      <NoAds v-else></NoAds>
     </div>
     <template v-else>
       <Loader></Loader>
@@ -33,6 +36,7 @@
 <script>
 import Product from '@/components/Product'
 import Loader from '@/components/ui/Loader'
+import NoAds from '@/components/ui/NoAds'
 
 export default {
   data () {
@@ -45,7 +49,6 @@ export default {
   },
   computed: {
     ads () {
-      console.log(this.$store.getters.getAds)
       return this.$store.getters.getAds
     },
     promoAds () {
@@ -57,7 +60,8 @@ export default {
   },
   components: {
     Product,
-    Loader
+    Loader,
+    NoAds
   }
 }
 </script>

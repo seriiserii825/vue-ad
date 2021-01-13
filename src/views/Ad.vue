@@ -22,7 +22,6 @@ export default {
   props: ['id'],
   computed: {
     ad () {
-      console.log(this.$store.getters.getAdById(this.id))
       return this.$store.getters.getAdById(this.id)
     }
   },
