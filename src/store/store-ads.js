@@ -14,36 +14,7 @@ class Ad {
 }
 export default {
   state: {
-    ads: [
-      {
-        id: '1',
-        title: 'First',
-        text: 'some text 1',
-        imgSrc: '1.jpg',
-        promo: false
-      },
-      {
-        id: '2',
-        title: 'Second',
-        text: 'some text 2',
-        imgSrc: '2.jpg',
-        promo: true
-      },
-      {
-        id: '3',
-        title: 'Third',
-        text: 'some text 3',
-        imgSrc: '3.jpg',
-        promo: true
-      },
-      {
-        id: '4',
-        title: 'Fourth',
-        text: 'some text 4',
-        imgSrc: '4.jpg',
-        promo: false
-      }
-    ]
+    ads: []
   },
   getters: {
     getAds (state) {
@@ -71,6 +42,9 @@ export default {
     },
     createAd (state, payload) {
       state.ads.push(payload)
+    },
+    loadAds (state, payload) {
+      state.ads = payload
     }
   },
   actions: {
@@ -97,6 +71,24 @@ export default {
         commit('setError', error)
         commit('setLoading', false)
         throw error // выкинем ошибку, чтобы потом обработать в промисе
+      }
+    },
+    async fetchAds ({commit}) {
+      commit('clearError')
+      commit('setLoading', true)
+      try {
+        const fabVal = await firebase.database().ref('ads').once('value')
+        const ads = fabVal.val()
+        const adsResult = []
+        Object.keys(ads).forEach(item => {
+          const ad = ads[item]
+          adsResult.push(new Ad(ad.title, ad.description, ad.ownerId, ad.imgSrc, ad.promo, item))
+        })
+        commit('loadAds', adsResult)
+        commit('setLoading', false)
+      } catch (error) {
+        commit('setLoading', false)
+        commit('setError', error)
       }
     }
   }

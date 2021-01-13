@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div class="container">
+    <div class="container" v-if="!loading">
       <splide class="slider" :options="options">
         <splide-slide
           class="slider__item"
@@ -24,11 +24,15 @@
         ></Product>
       </div>
     </div>
+    <template v-else>
+      <Loader></Loader>
+    </template>
   </div>
 </template>
 
 <script>
 import Product from '@/components/Product'
+import Loader from '@/components/ui/Loader'
 
 export default {
   data () {
@@ -45,10 +49,14 @@ export default {
     },
     promoAds () {
       return this.$store.getters.getPromoAds
+    },
+    loading () {
+      return this.$store.getters.loading
     }
   },
   components: {
-    Product
+    Product,
+    Loader
   }
 }
 </script>
