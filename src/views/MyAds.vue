@@ -3,7 +3,7 @@
     <PageTitle title="My ads"></PageTitle>
     <Grid class="cards-h" v-grid-columns="3">
       <GridItem class="cards-h__item" v-for="{id, title, text, imgSrc} in myAds" :key="id">
-        <ImageAbsolute v-image-height="'20rem'" v-image-media-height="'30rem'" :img-src="require(`@/assets/images/products/${imgSrc}`)"></ImageAbsolute>
+        <ImageAbsolute v-image-height="'20rem'" v-image-media-height="'30rem'" :img-src="imgSrc"></ImageAbsolute>
         <div class="cards-h__body">
           <div class="cards-h__content">
             <h2 class="cards-h__title">{{ title }}</h2>

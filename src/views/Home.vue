@@ -10,7 +10,7 @@
           <h2 class="slider__title">
             <router-link :to="'/ad/' + id">{{ title }}</router-link>
           </h2>
-          <img :src="require(`@/assets/images/products/${imgSrc}`)" :alt="title"/>
+          <img :src="imgSrc" :alt="title"/>
         </splide-slide>
       </splide>
       <div class="products">
@@ -20,7 +20,7 @@
           :key="id"
           :title="title"
           :text="text"
-          :imgSrc="require(`@/assets/images/products/${imgSrc}`)"
+          :imgSrc="imgSrc"
         ></Product>
       </div>
     </div>
@@ -45,6 +45,7 @@ export default {
   },
   computed: {
     ads () {
+      console.log(this.$store.getters.getAds)
       return this.$store.getters.getAds
     },
     promoAds () {

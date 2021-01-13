@@ -1,6 +1,6 @@
 <template>
-  <div class="ad">
-    <ImageAbsolute v-image-height="'60rem'" :img-src="require(`@/assets/images/products/${ad.imgSrc}`)"></ImageAbsolute>
+  <div v-if="ad" class="ad">
+    <ImageAbsolute v-image-height="'60rem'" :img-src="ad.imgSrc"></ImageAbsolute>
     <div class="cards-h__body">
       <div class="cards-h__content">
         <h2 class="cards-h__title">{{ ad.title }}</h2>
@@ -22,6 +22,7 @@ export default {
   props: ['id'],
   computed: {
     ad () {
+      console.log(this.$store.getters.getAdById(this.id))
       return this.$store.getters.getAdById(this.id)
     }
   },
