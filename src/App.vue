@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import Header from '@/components/Header/Header'
-import List from '@/components/List/List'
-import AddItem from '@/components/AddItem/AddItem'
+import Header from '@/components/Header'
+import List from '@/components/List'
+import AddItem from '@/components/AddItem'
 
 export default {
   components: {

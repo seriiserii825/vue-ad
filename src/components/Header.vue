@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import FilterItems from '@/components/FilterItems/FilterItems'
+import FilterItems from '@/components/FilterItems'
 
 export default {
   data () {

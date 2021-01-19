@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import ListItem from '@/components/ListItem/ListItem'
+import ListItem from '@/components/ListItem'
 
 export default {
   components: {
