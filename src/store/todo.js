@@ -17,6 +17,14 @@ export default {
     toggleTodo (state, payload) {
       const idx = state.todos.findIndex(item => item.id === payload)
       state.todos[idx].done = !state.todos[idx].done
+    },
+    addTodo (state, payload) {
+      const newItem = {
+        id: new Date().getTime(),
+        title: payload,
+        done: false
+      }
+      state.todos.push(newItem)
     }
   }
 }
