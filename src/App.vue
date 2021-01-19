@@ -1,11 +1,22 @@
 <template>
   <div id="app">
+    <Header/>
+    <List/>
+    <AddItem/>
   </div>
 </template>
 
 <script>
-export default {
+import Header from '@/components/Header/Header'
+import List from '@/components/List/List'
+import AddItem from '@/components/AddItem/AddItem'
 
+export default {
+  components: {
+    Header,
+    List,
+    AddItem
+  }
 }
 </script>
 
@@ -98,5 +109,26 @@ a {
 }
 .main {
   padding: 6rem 0;
+}
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  padding: 10px;
+  font-size: 16px;
+}
+/* Стиль кнопки "Добавить" */
+.btn {
+  padding: 10px;
+  background: #d9d9d9;
+  color: #555;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+.btn:hover {
+  background-color: #bbb;
 }
 </style>
