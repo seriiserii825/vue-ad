@@ -3,9 +3,9 @@
     <h2>Add new todo</h2>
     <div class="add-item__wrap">
       <input
-        type="text"
-        placeholder="Type to search..."
-        v-model="inputValue"
+          type="text"
+          placeholder="Type to search..."
+          v-model="inputValue"
       />
       <button class="btn">Add new todo</button>
     </div>
@@ -23,9 +23,10 @@ export default {
     onSubmit () {
       if (this.inputValue === '') {
         alert('field is empty')
+      } else {
+        this.$store.commit('addTodo', this.inputValue)
+        this.inputValue = ''
       }
-      this.$store.commit('addTodo', this.inputValue)
-      this.inputValue = ''
     }
   }
 }

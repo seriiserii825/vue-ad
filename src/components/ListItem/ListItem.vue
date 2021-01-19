@@ -1,12 +1,21 @@
 <template>
   <li class="list__item" :class="{'checked': this.done}">
-    <span class="list__item-text">{{ title }}</span><span class="close">x</span>
+    <span @click="toggleTodo(id)" class="list__item-text">{{ title }}</span>
+    <span @click="deleteItem(id)" class="close">x</span>
   </li>
 </template>
 
 <script>
 export default {
-  props: ['title', 'done']
+  props: ['title', 'done', 'id'],
+  methods: {
+    toggleTodo (id) {
+      this.$store.commit('toggleTodo', id)
+    },
+    deleteItem (id) {
+      this.$store.commit('deleteTodo', id)
+    }
+  }
 }
 </script>
 
@@ -15,7 +24,6 @@ export default {
 .list__item {
   cursor: pointer;
   position: relative;
-  padding: 12px 8px 12px 40px;
   background: #eee;
   font-size: 18px;
   transition: 0.2s;
@@ -26,6 +34,10 @@ export default {
   user-select: none;
   &-title {
     display: block;
+  }
+  &-text {
+    display: block;
+    padding: 12px 8px 12px 40px;
   }
 }
 /* Установить все нечетные элементы списка в другой цвет (зебра) */

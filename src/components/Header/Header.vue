@@ -1,10 +1,10 @@
 <template>
   <div class="header">
     <h2>My list of todos</h2>
-    <div class="header__wrap">
-      <input type="text" placeholder="Type to search..."/>
+    <form class="header__wrap">
+      <input v-model="inputValue" @input="submitForm" type="text" placeholder="Type to search..."/>
       <button class="btn">Search</button>
-    </div>
+    </form>
     <FilterItems/>
   </div>
 </template>
@@ -13,6 +13,16 @@
 import FilterItems from '@/components/FilterItems/FilterItems'
 
 export default {
+  data () {
+    return {
+      inputValue: ''
+    }
+  },
+  methods: {
+    submitForm () {
+      this.$store.commit('setTerm', this.inputValue)
+    }
+  },
   components: {
     FilterItems
   }

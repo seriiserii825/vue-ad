@@ -1,11 +1,11 @@
 <template>
   <ul class="list">
     <ListItem
-      v-for="item in list"
-      :key="item.id"
-      :title="item.title"
-      :done="item.done"
-      @click.native="toggleTodo(item.id)"
+        v-for="item in list"
+        :key="item.id"
+        :title="item.title"
+        :done="item.done"
+        :id="item.id"
     >{{ item.title }}
     </ListItem>
   </ul>
@@ -20,12 +20,19 @@ export default {
   },
   computed: {
     list () {
-      return this.$store.getters.todos
-    }
-  },
-  methods: {
-    toggleTodo (id) {
-      this.$store.commit('toggleTodo', id)
+      const term = this.$store.getters.term
+      console.log('term ' + term)
+
+      if (term) {
+        return this.$store.getters.todos.map(item => {
+          console.log('title ' + item.title)
+          console.log('term ' + term)
+          console.log('result ' + item.title.indexOf(term) > -1)
+          return item.title.indexOf(term) > -1
+        })
+      } else {
+        return this.$store.getters.todos
+      }
     }
   }
 }
