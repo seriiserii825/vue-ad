@@ -24,12 +24,7 @@ export default {
       console.log('term ' + term)
 
       if (term) {
-        return this.$store.getters.todos.map(item => {
-          console.log('title ' + item.title)
-          console.log('term ' + term)
-          console.log('result ' + item.title.indexOf(term) > -1)
-          return item.title.indexOf(term) > -1
-        })
+        return this.$store.getters.todos.filter(el => el.title.toLowerCase().indexOf(term.toLowerCase()) > -1)
       } else {
         return this.$store.getters.todos
       }
