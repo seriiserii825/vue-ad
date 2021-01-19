@@ -1,15 +1,75 @@
 <template>
   <li class="list__item">
-    <span onClick={() => onToggleDone(id)} className="list__item-title">{title}</span><span className="close" onClick={() => onRemoveItem(id)}>x</span>
+    <span class="list__item-title"></span><span class="close">x</span>
   </li>
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
 <style lang="scss">
 
+.list__item {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+  /* сделайте элементы списка невыбираемыми */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  &-title {
+    display: block;
+  }
+}
+/* Установить все нечетные элементы списка в другой цвет (зебра) */
+.list__item:nth-child(odd) {
+  background: #f9f9f9;
+}
+/* Более темный фон-цвет при наведении */
+.list__item:hover {
+  background: #ddd;
+}
+/* При нажатии на кнопку, добавить цвет фона и вычеркнуть текст */
+.list__item.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+/* Добавить "checked" отметить при нажатии на кнопку */
+.list__item.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+/* Стиль кнопки "Закрыть" */
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 100%;
+  opacity: .2;
+  transition: all .2s;
+  background-color: pink;
+}
+.close:hover {
+  background-color: #f44336;
+  color: white;
+  opacity: 1;
+}
 </style>
