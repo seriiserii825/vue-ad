@@ -1,6 +1,6 @@
 <template>
-  <li class="list__item">
-    <span class="list__item-title">{{ title }}</span><span class="close">x</span>
+  <li class="list__item" :class="{'checked': this.done}">
+    <span class="list__item-text">{{ title }}</span><span class="close">x</span>
   </li>
 </template>
 

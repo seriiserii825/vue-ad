@@ -12,5 +12,11 @@ export default {
     todos (state) {
       return state.todos
     }
+  },
+  mutations: {
+    toggleTodo (state, payload) {
+      const idx = state.todos.findIndex(item => item.id === payload)
+      state.todos[idx].done = !state.todos[idx].done
+    }
   }
 }

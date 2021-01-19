@@ -5,6 +5,7 @@
       :key="item.id"
       :title="item.title"
       :done="item.done"
+      @click.native="toggleTodo(item.id)"
     >{{ item.title }}
     </ListItem>
   </ul>
@@ -20,6 +21,11 @@ export default {
   computed: {
     list () {
       return this.$store.getters.todos
+    }
+  },
+  methods: {
+    toggleTodo (id) {
+      this.$store.commit('toggleTodo', id)
     }
   }
 }
