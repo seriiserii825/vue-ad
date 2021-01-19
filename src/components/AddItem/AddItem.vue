@@ -1,15 +1,40 @@
 <template>
-  <div class="add-item">
-
-  </div>
+  <form class="add-item">
+    <h2>Add new todo</h2>
+    <div class="add-item__wrap">
+      <input
+        type="text"
+        placeholder="Type to search..."
+      />
+      <button class="btn">Add new todo</button>
+    </div>
+  </form>
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
-<style scoped>
-
+<style lang="scss">
+.add-item {
+  padding: 30px;
+  text-align: center;
+  background-color: lightseagreen;
+  h2 {
+    color: white;
+  }
+  &__wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  input {
+    width: 60%;
+  }
+  .btn {
+    width: 25%;
+    outline: none;
+    border: none;
+  }
+}
 </style>

@@ -1,5 +1,5 @@
 export default {
-  store: {
+  state: {
     todos: [
       {id: 1, title: 'some', done: false},
       {id: 2, title: 'second', done: false},
@@ -9,9 +9,8 @@ export default {
     ]
   },
   getters: {
-    todos (store) {
-      console.log(store.todos)
-      return store.todos
+    todos (state) {
+      return state.todos
     }
   }
 }

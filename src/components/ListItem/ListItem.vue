@@ -1,11 +1,13 @@
 <template>
   <li class="list__item">
-    <span class="list__item-title"></span><span class="close">x</span>
+    <span class="list__item-title">{{ title }}</span><span class="close">x</span>
   </li>
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['title', 'done']
+}
 </script>
 
 <style lang="scss">
