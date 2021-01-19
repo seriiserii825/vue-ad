@@ -7,5 +7,11 @@ export default {
       {id: 4, title: 'four', done: false},
       {id: 5, title: 'fifth', done: false}
     ]
+  },
+  getters: {
+    todos (store) {
+      console.log(store.todos)
+      return store.todos
+    }
   }
 }

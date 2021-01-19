@@ -1,6 +1,12 @@
 <template>
   <ul class="list">
-    <ListItem/>
+    <ListItem
+      v-for="item in list"
+      :key="item.id"
+      :title="item.title"
+      :done="item.done"
+    >{{ item.title }}
+    </ListItem>
   </ul>
 </template>
 
@@ -10,6 +16,11 @@ import ListItem from '@/components/ListItem/ListItem'
 export default {
   components: {
     ListItem
+  },
+  computed: {
+    list () {
+      return this.$store.getters.todos
+    }
   }
 }
 </script>
