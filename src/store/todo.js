@@ -27,7 +27,20 @@ export default {
         done: false
       }
     ],
-    term: null
+    term: null,
+    filterButtons: [
+      {
+        id: 1,
+        class: 'all',
+        label: 'All'
+      },
+      {
+        id: 2,
+        class: 'done',
+        label: 'Done'
+      }
+    ],
+    filter: 'all'
   },
   getters: {
     todos (state) {
@@ -35,6 +48,12 @@ export default {
     },
     term (state) {
       return state.term
+    },
+    filterButtons (state) {
+      return state.filterButtons
+    },
+    filter (state) {
+      return state.filter
     }
   },
   mutations: {
@@ -56,6 +75,9 @@ export default {
     },
     setTerm (state, payload) {
       state.term = payload
+    },
+    setFilter (state, payload) {
+      state.filter = payload
     }
   }
 }

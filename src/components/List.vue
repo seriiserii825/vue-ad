@@ -21,11 +21,17 @@ export default {
   computed: {
     list () {
       const term = this.$store.getters.term
-      console.log('term ' + term)
+      const filter = this.$store.getters.filter
 
       if (term) {
         return this.$store.getters.todos.filter(el => el.title.toLowerCase().indexOf(term.toLowerCase()) > -1)
       } else {
+        switch (filter) {
+          case 'all':
+            return this.$store.getters.todos
+          case 'done':
+            return this.$store.getters.todos.filter(item => item.done)
+        }
         return this.$store.getters.todos
       }
     }
